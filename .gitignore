@@ -1,1 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+.vscode
+
+# Data
+data/
+
+# File Extensions
+*.csv
+*.pickle
+*.pyc
+
+# Environment Variables
 venv/
+.env/
+
+# Installer logs
+pip-log.txt
