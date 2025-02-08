@@ -4,8 +4,8 @@ import re
 import emoji
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
+import nltk
 import os
 
 label_mapping = {'negative': 0, 'positive': 1}
@@ -32,18 +32,11 @@ def remove_stopwords(tokens):
     stop_words = set(stopwords.words('english'))
     return [word for word in tokens if word not in stop_words]
 
-# Apply stemming
-def stemming(tokens):
-    stemmer = PorterStemmer()
-    return [stemmer.stem(word) for word in tokens]
-
-# Clean the text with stemming
-def clean_text(text, apply_stemming=False):
+# Clean the text without stemming
+def clean_text(text):
     text = basic_cleaning(text)
     tokens = tokenize_text(text)
     tokens = remove_stopwords(tokens)
-    tokens = stemming(tokens)
-
     return ' '.join(tokens)
 
 # Vectorize with TF-IDF
@@ -54,16 +47,13 @@ def vectorize_tfidf(train, test):
     return X_train, X_test, tfidf_vectorizer
 
 # Preprocessing pipeline that handles both train and test data
-def preprocess_pipeline(train, test, apply_stemming=False):
-    train['cleaned_review'] = train['review'].apply(lambda x: clean_text(x, apply_stemming))
-    test['cleaned_review'] = test['review'].apply(lambda x: clean_text(x, apply_stemming))
+def preprocess_pipeline(train, test):
+    train['cleaned_review'] = train['review'].apply(lambda x: clean_text(x))
+    test['cleaned_review'] = test['review'].apply(lambda x: clean_text(x))
 
     X_train_tfidf, X_test_tfidf, tfidf_vectorizer = vectorize_tfidf(train, test)
 
-    y_train = convert_labels(train['sentiment'])
-    y_test = convert_labels(test['sentiment'])
-
-    return X_train_tfidf, X_test_tfidf, y_train, y_test, tfidf_vectorizer
+    return X_train_tfidf, X_test_tfidf, tfidf_vectorizer
 
 # Loading the data from data/raw
 def load_data():
@@ -83,10 +73,13 @@ def save_processed_data(train, test):
     test.to_csv('data/processed/test_processed.csv', index=False)
 
 # Final execution
-def execute_pipeline(apply_stemming=False):
+def execute_pipeline():
     train, test = load_data()
 
-    X_train_tfidf, X_test_tfidf, y_train, y_test, tfidf_vectorizer = preprocess_pipeline(train, test, apply_stemming)
+    X_train_tfidf, X_test_tfidf, tfidf_vectorizer = preprocess_pipeline(train, test)
+
+    y_train = convert_labels(train['sentiment'])
+    y_test = convert_labels(test['sentiment'])
 
     save_processed_data(train, test)
 
