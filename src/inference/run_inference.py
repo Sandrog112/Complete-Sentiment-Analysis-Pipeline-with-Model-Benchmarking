@@ -103,7 +103,7 @@ def main():
         cm, report = evaluate_model(y_test, predictions)
 
         save_predictions(y_test, predictions)
-        save_metrics(report)
+        save_metrics(y_test, predictions)
         save_confusion_matrix(cm)
 
 if __name__ == "__main__":
