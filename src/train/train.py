@@ -1,6 +1,8 @@
 import sys
 import os
 import joblib
+import numpy as np
+from sklearn.model_selection import cross_validate
 import time
 import logging
 from sklearn.metrics import accuracy_score
@@ -42,10 +44,13 @@ def train_and_save_logistic_regression(X_train, y_train):
     training_time = end_time - start_time
     logger.info(f"Training completed in {training_time:.2f} seconds")
 
-    # Log the model's performance on the training set
-    y_train_pred = best_model.predict(X_train)
-    train_accuracy = accuracy_score(y_train, y_train_pred)
-    logger.info(f"Training accuracy: {train_accuracy:.4f}")
+    # Cross-validation evaluation on the entire training data
+    logger.info("Evaluating model using cross-validation")
+    cv_results = cross_validate(best_model, X_train, y_train, cv=5, scoring='accuracy', return_train_score=True)
+
+    # Log cross-validation results
+    logger.info(f"Cross-validation mean accuracy: {np.mean(cv_results['test_score']):.4f}")
+    logger.info(f"Cross-validation standard deviation: {np.std(cv_results['test_score']):.4f}")
 
     output_dir = 'outputs/models'
     os.makedirs(output_dir, exist_ok=True)

@@ -2,7 +2,7 @@ import sys
 import os
 import joblib
 import pandas as pd
-from sklearn.metrics import confusion_matrix, classification_report, ConfusionMatrixDisplay, accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import confusion_matrix, classification_report, ConfusionMatrixDisplay, accuracy_score, precision_score, recall_score, f1_score, roc_curve, auc
 import matplotlib.pyplot as plt
 import seaborn as sns
 import time
@@ -78,6 +78,30 @@ def save_metrics(y_test, predictions):
     
     logger.info("Detailed metrics and classification report saved to outputs/predictions/metrics.txt")
 
+# Saving ROC curve
+def save_roc_curve(y_test, model, X_test_tfidf):
+    y_prob = model.predict_proba(X_test_tfidf)[:, 1]
+    
+    fpr, tpr, _ = roc_curve(y_test, y_prob)
+    roc_auc = auc(fpr, tpr)
+    
+    plt.figure()
+    plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (area = {roc_auc:.2f})')
+    plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('Receiver Operating Characteristic (ROC) Curve')
+    plt.legend(loc='lower right')
+
+    output_dir = 'outputs/figures'
+    os.makedirs(output_dir, exist_ok=True)
+    
+    plt.savefig(os.path.join(output_dir, 'roc_curve.png'))
+    plt.close()
+    logger.info("ROC curve plot saved to outputs/figures/roc_curve.png")
+
 def save_confusion_matrix(cm):
     output_dir = 'outputs/figures'
     os.makedirs(output_dir, exist_ok=True)
@@ -114,6 +138,7 @@ def main():
         save_predictions(y_test, predictions)
         save_metrics(y_test, predictions)
         save_confusion_matrix(cm)
+        save_roc_curve(y_test, model, X_test_tfidf)
 
 if __name__ == "__main__":
     main()
