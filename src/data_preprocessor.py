@@ -69,8 +69,8 @@ def save_processed_data(train, test):
     if not os.path.exists('data/processed'):
         os.makedirs('data/processed')
 
-    train.to_csv('data/processed/train_processed.csv', index=False)
-    test.to_csv('data/processed/test_processed.csv', index=False)
+    train[['cleaned_review', 'sentiment']].to_csv('data/processed/train_processed.csv', index=False)
+    test[['cleaned_review', 'sentiment']].to_csv('data/processed/test_processed.csv', index=False)
 
 # Final execution
 def execute_pipeline():
