@@ -113,6 +113,39 @@ def save_confusion_matrix(cm):
     plt.close()
     logger.info("Confusion matrix plot saved to outputs/figures/confusion_matrix.png")
 
+def update_readme_with_metrics(accuracy, precision, recall, f1, report):
+    readme_path = 'README.md'
+
+    metrics_text = (
+        f"\n## Final Model Metrics\n"
+        f"- **Accuracy**: {accuracy}\n"
+        f"- **Precision**: {precision}\n"
+        f"- **Recall**: {recall}\n"
+        f"- **F1-Score**: {f1}\n\n"
+        f"### Classification Report:\n```\n{report}\n```\n"
+    )
+
+    with open(readme_path, 'r') as file:
+        content = file.readlines()
+
+    insert_position = None
+    for i, line in enumerate(content):
+        if "metrics for the final model are as follows:" in line:
+            insert_position = i + 1  
+            break
+
+    if insert_position is None:
+        logger.error("The phrase 'metrics for the final model are as follows:' not found!")
+        return
+
+    # Insert the metrics at the found position
+    content.insert(insert_position, metrics_text + "\n")
+
+    with open(readme_path, 'w') as file:
+        file.writelines(content)
+
+    logger.info("Metrics added to README.md file.")
+
 # Executing all the processes
 def main():
     X_train_tfidf, X_test_tfidf, y_train, y_test, tfidf_vectorizer = execute_pipeline()
@@ -139,6 +172,9 @@ def main():
         save_metrics(y_test, predictions)
         save_confusion_matrix(cm)
         save_roc_curve(y_test, model, X_test_tfidf)
+
+        update_readme_with_metrics(accuracy, precision, recall, f1, report)
+
 
 if __name__ == "__main__":
     main()
