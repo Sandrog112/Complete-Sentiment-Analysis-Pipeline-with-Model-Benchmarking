@@ -52,6 +52,86 @@ The XGBoost model performed well, but it didn't surpass the Logistic Regression 
 
 The final model chosen for inference was **Logistic Regression with Stemming + TF-IDF**. The performance metrics for the final model are as follows:
 
+## Final Model Metrics
+- **Accuracy**: 0.8971
+- **Precision**: 0.8971630536063905
+- **Recall**: 0.8971
+- **F1-Score**: 0.8970959157368956
+
+### Classification Report:
+```
+              precision    recall  f1-score   support
+
+           0       0.90      0.89      0.90      5000
+           1       0.89      0.90      0.90      5000
+
+    accuracy                           0.90     10000
+   macro avg       0.90      0.90      0.90     10000
+weighted avg       0.90      0.90      0.90     10000
+
+```
+
+
+## Final Model Metrics
+- **Accuracy**: 0.897
+- **Precision**: 0.897065055138634
+- **Recall**: 0.897
+- **F1-Score**: 0.8969957809471875
+
+### Classification Report:
+```
+              precision    recall  f1-score   support
+
+           0       0.90      0.89      0.90      5000
+           1       0.89      0.90      0.90      5000
+
+    accuracy                           0.90     10000
+   macro avg       0.90      0.90      0.90     10000
+weighted avg       0.90      0.90      0.90     10000
+
+```
+
+
+## Final Model Metrics
+- **Accuracy**: 0.8973
+- **Precision**: 0.8973801277289553
+- **Recall**: 0.8973
+- **F1-Score**: 0.8972948226320088
+
+### Classification Report:
+```
+              precision    recall  f1-score   support
+
+           0       0.90      0.89      0.90      5000
+           1       0.89      0.90      0.90      5000
+
+    accuracy                           0.90     10000
+   macro avg       0.90      0.90      0.90     10000
+weighted avg       0.90      0.90      0.90     10000
+
+```
+
+
+## Final Model Metrics
+- **Accuracy**: 0.8973
+- **Precision**: 0.8973801277289553
+- **Recall**: 0.8973
+- **F1-Score**: 0.8972948226320088
+
+### Classification Report:
+```
+              precision    recall  f1-score   support
+
+           0       0.90      0.89      0.90      5000
+           1       0.89      0.90      0.90      5000
+
+    accuracy                           0.90     10000
+   macro avg       0.90      0.90      0.90     10000
+weighted avg       0.90      0.90      0.90     10000
+
+```
+
+
 ### Final Model Metrics
 - **Accuracy**: 0.8893
 - **Precision**: 0.8894347288387889
@@ -70,6 +150,24 @@ The final model chosen for inference was **Logistic Regression with Stemming + T
 weighted avg       0.89      0.89      0.89     10000
 
 ```
+
+## Potential Business Applications and Value for Business
+
+The sentiment analysis model built in this project has several potential applications for businesses, particularly those in industries where customer feedback plays a crucial role in decision-making and strategy development. Below are some key business applications:
+
+1. **Customer Feedback Analysis**: The model can be used to automatically analyze customer reviews, surveys, or social media posts, categorizing them into positive or negative sentiments. This helps businesses gain insights into customer satisfaction, identify areas of improvement, and prioritize issues that require immediate attention.
+
+2. **Brand Monitoring**: By processing online mentions, businesses can track public sentiment about their brand in real-time. This enables businesses to respond to both positive and negative feedback proactively, improving their public relations efforts and brand reputation.
+
+3. **Product Development**: The sentiment analysis model can be applied to user reviews of products or services, helping businesses understand what features are liked or disliked. This feedback loop can guide product improvements or the development of new features that better meet customer expectations.
+
+4. **Market Research**: Sentiment analysis can assist businesses in understanding broader market trends, enabling them to gauge public opinion on various topics, from entertainment to politics. This can be useful for market research firms or companies seeking to predict trends based on public sentiment.
+
+5. **Customer Support**: Automatically analyzing customer support tickets or interactions can help businesses detect customer issues more efficiently, categorize the urgency of requests, and even predict whether a customer might churn based on their sentiment.
+
+6. **Social Media Campaigns**: Companies running advertising campaigns or engaging with their audience on social media can leverage sentiment analysis to measure the effectiveness of their campaigns in real time. This feedback can help them adjust their marketing strategies, content, or messaging to improve engagement and customer loyalty.
+
+In summary, sentiment analysis of movie reviews (or any textual feedback) provides valuable insights that can be translated into actionable strategies for improving customer experience, brand image, and overall business performance. The ability to automatically categorize large volumes of text data saves time and resources while empowering businesses with real-time feedback to make data-driven decisions.
 
 
 
