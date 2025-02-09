@@ -107,6 +107,7 @@ Clone the forked repository to your local machine:
 
 ```bash
 git clone https://github.com/Sandrog112/EPAM-Final-Project.git
+cd EPAM_Final_Project
 ```
 
 ### Setting Up Development Environment
@@ -160,8 +161,15 @@ The data processing is handled by two scripts: `data_loader.py` and `data_prepro
 - **`data_loader.py`**: This script loads the movie reviews dataset from a public Google Drive link, fetching both the training and test CSV files.
 
 - **`data_preprocessor.py`**: This script preprocesses the raw reviews data by performing basic text cleaning, tokenization, stopword removal, and vectorization (using TF-IDF or Count Vectorizer). It prepares the data for training and evaluation, ensuring it is in the correct format for machine learning models.
+- 
+To run data loader and data preprocessor run the following commands:
+```bash
+python src/data_loader.py
+```
 
-
+```bash
+python src/data_preprocessor.py
+```
 
 ## Model Training
 The training of the Logistic Regression is handled by the `train.py` script located in the `train` folder. The model is saved in the `models` folder after training.
@@ -169,7 +177,7 @@ The training of the Logistic Regression is handled by the `train.py` script loca
 To train the model, simply run the following command:
 
 ```bash
-python train/train.py
+python src/train/train.py
 ```
 
 ### Running Training with Docker
@@ -191,7 +199,7 @@ Once the model is trained, it can be used for inference. The inference pipeline 
 To run the inference locally:
 
 ```bash
-python inference/run_inference.py
+python src/inference/run_inference.py
 ```
 
 ### Running Inference with Docker
@@ -205,15 +213,6 @@ Run the inference Docker container:
 
 ```bash
 docker run -v /path/to/your/local/outputs:/app/outputs sentiment_inference
-```
-
-## Requirements
-
-The project has the following Python dependencies, which are listed in the `requirements.txt` file.
-
-To install them, simply run:
-```bash
-pip install -r requirements.txt
 ```
 
 ## Wrap Up
