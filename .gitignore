@@ -1,7 +1,9 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-.vscode
+
+# IDE configurations
+.vscode/
 
 # Data
 data/
@@ -9,7 +11,7 @@ data/
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
-# File Extensions
+# File Extensions to ignore
 *.csv
 *.pickle
 *.pyc
@@ -20,3 +22,6 @@ venv/
 
 # Installer logs
 pip-log.txt
+
+# Gitignore file itself
+.gitignore
