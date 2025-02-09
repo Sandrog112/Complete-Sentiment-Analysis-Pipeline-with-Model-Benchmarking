@@ -26,9 +26,9 @@ def train_and_save_logistic_regression(X_train, y_train):
     model = LogisticRegression(max_iter=1000)
 
     param_grid = {
-        'C': [0.1, 1, 10],
+        'C': [2],
         'penalty': ['l2'],
-        'solver': ['liblinear', 'saga']
+        'solver': ['saga']
     }
 
     # Use GridSearchCV for hyperparameter tuning
@@ -46,7 +46,7 @@ def train_and_save_logistic_regression(X_train, y_train):
 
     # Cross-validation evaluation on the entire training data
     logger.info("Evaluating model using cross-validation")
-    cv_results = cross_validate(best_model, X_train, y_train, cv=5, scoring='accuracy', return_train_score=True)
+    cv_results = cross_validate(best_model, X_train, y_train, cv=3, scoring='accuracy', return_train_score=True)
 
     # Log cross-validation results
     logger.info(f"Cross-validation mean accuracy: {np.mean(cv_results['test_score']):.4f}")

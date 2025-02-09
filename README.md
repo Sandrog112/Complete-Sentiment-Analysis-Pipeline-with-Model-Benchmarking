@@ -53,90 +53,10 @@ The XGBoost model performed well, but it didn't surpass the Logistic Regression 
 The final model chosen for inference was **Logistic Regression with Stemming + TF-IDF**. The performance metrics for the final model are as follows:
 
 ## Final Model Metrics
-- **Accuracy**: 0.8971
-- **Precision**: 0.8971630536063905
-- **Recall**: 0.8971
-- **F1-Score**: 0.8970959157368956
-
-### Classification Report:
-```
-              precision    recall  f1-score   support
-
-           0       0.90      0.89      0.90      5000
-           1       0.89      0.90      0.90      5000
-
-    accuracy                           0.90     10000
-   macro avg       0.90      0.90      0.90     10000
-weighted avg       0.90      0.90      0.90     10000
-
-```
-
-
-## Final Model Metrics
-- **Accuracy**: 0.897
-- **Precision**: 0.897065055138634
-- **Recall**: 0.897
-- **F1-Score**: 0.8969957809471875
-
-### Classification Report:
-```
-              precision    recall  f1-score   support
-
-           0       0.90      0.89      0.90      5000
-           1       0.89      0.90      0.90      5000
-
-    accuracy                           0.90     10000
-   macro avg       0.90      0.90      0.90     10000
-weighted avg       0.90      0.90      0.90     10000
-
-```
-
-
-## Final Model Metrics
-- **Accuracy**: 0.8973
-- **Precision**: 0.8973801277289553
-- **Recall**: 0.8973
-- **F1-Score**: 0.8972948226320088
-
-### Classification Report:
-```
-              precision    recall  f1-score   support
-
-           0       0.90      0.89      0.90      5000
-           1       0.89      0.90      0.90      5000
-
-    accuracy                           0.90     10000
-   macro avg       0.90      0.90      0.90     10000
-weighted avg       0.90      0.90      0.90     10000
-
-```
-
-
-## Final Model Metrics
-- **Accuracy**: 0.8973
-- **Precision**: 0.8973801277289553
-- **Recall**: 0.8973
-- **F1-Score**: 0.8972948226320088
-
-### Classification Report:
-```
-              precision    recall  f1-score   support
-
-           0       0.90      0.89      0.90      5000
-           1       0.89      0.90      0.90      5000
-
-    accuracy                           0.90     10000
-   macro avg       0.90      0.90      0.90     10000
-weighted avg       0.90      0.90      0.90     10000
-
-```
-
-
-### Final Model Metrics
-- **Accuracy**: 0.8893
-- **Precision**: 0.8894347288387889
-- **Recall**: 0.8893
-- **F1-Score**: 0.8892904247288348
+- **Accuracy**: 0.8907
+- **Precision**: 0.8908076909673229
+- **Recall**: 0.8907
+- **F1-Score**: 0.8906924698042449
 
 ### Classification Report:
 ```
@@ -150,6 +70,7 @@ weighted avg       0.90      0.90      0.90     10000
 weighted avg       0.89      0.89      0.89     10000
 
 ```
+
 
 ## Potential Business Applications and Value for Business
 

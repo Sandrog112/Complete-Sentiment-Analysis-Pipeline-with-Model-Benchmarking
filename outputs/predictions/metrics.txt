@@ -1,7 +1,7 @@
-Accuracy: 0.8893
-Precision: 0.8894347288387889
-Recall: 0.8893
-F1-Score: 0.8892904247288348
+Accuracy: 0.8907
+Precision: 0.8908076909673229
+Recall: 0.8907
+F1-Score: 0.8906924698042449
 
 Classification Report:
               precision    recall  f1-score   support
