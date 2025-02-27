@@ -6,7 +6,6 @@ WORKDIR /app
 
 # Copy data folder to Docker (adjust the path if needed)
 COPY data/raw/ /app/data/raw
-COPY data/processed/ /app/data/processed
 
 # Copy the training code
 COPY src/train/ /app/src/train

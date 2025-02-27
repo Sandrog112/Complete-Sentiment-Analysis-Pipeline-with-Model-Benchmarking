@@ -54,9 +54,9 @@ The final model chosen for inference was **Logistic Regression with Stemming + T
 
 ## Final Model Metrics
 - **Accuracy**: 0.8907
-- **Precision**: 0.8908076909673229
+- **Precision**: 0.8908
 - **Recall**: 0.8907
-- **F1-Score**: 0.8906924698042449
+- **F1-Score**: 0.8907
 
 ### Classification Report:
 ```
@@ -68,8 +68,6 @@ The final model chosen for inference was **Logistic Regression with Stemming + T
     accuracy                           0.89     10000
    macro avg       0.89      0.89      0.89     10000
 weighted avg       0.89      0.89      0.89     10000
-
-```
 
 
 ## Potential Business Applications and Value for Business
@@ -162,19 +160,15 @@ The data processing is handled by two scripts: `data_loader.py` and `data_prepro
 
 - **`data_preprocessor.py`**: This script preprocesses the raw reviews data by performing basic text cleaning, tokenization, stopword removal, and vectorization (using TF-IDF or Count Vectorizer). It prepares the data for training and evaluation, ensuring it is in the correct format for machine learning models.
 - 
-To run data loader and data preprocessor run the following commands:
+To load data run the following commands:
 ```bash
 python src/data_loader.py
-```
-
-```bash
-python src/data_preprocessor.py
 ```
 
 ## Model Training
 The training of the Logistic Regression is handled by the `train.py` script located in the `train` folder. The model is saved in the `models` folder after training.
 
-To train the model, simply run the following command:
+To train the model on preprocessed data, simply run the following command:
 
 ```bash
 python src/train/train.py
@@ -190,7 +184,7 @@ docker build -t sentiment_train -f src/train/Dockerfile .
 Run the Docker container to train the model:
 
 ```bash
-docker run -v /path/to/your/local/outputs:/app/outputs sentiment_train 
+docker run --rm -v "$(pwd)/data:/app/data" -v "$(pwd)/outputs:/app/outputs" sentiment_train
 ```
 
 ## Inference 
@@ -212,7 +206,7 @@ docker build -t sentiment_inference -f src/inference/Dockerfile .
 Run the inference Docker container:
 
 ```bash
-docker run -v /path/to/your/local/outputs:/app/outputs sentiment_inference
+docker run --rm -v "$(pwd)/outputs:/app/outputs" -v "$(pwd)/data/processed:/app/data/processed" sentiment_inference    
 ```
 
 ## Wrap Up

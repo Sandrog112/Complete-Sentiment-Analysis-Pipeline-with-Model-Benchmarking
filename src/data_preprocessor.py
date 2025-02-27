@@ -56,13 +56,18 @@ def preprocess_pipeline(train, test):
     return X_train_tfidf, X_test_tfidf, tfidf_vectorizer
 
 # Loading the data from data/raw
-def load_data():
-    train_data = pd.read_csv('data/raw/train.csv')
-    test_data = pd.read_csv('data/raw/test.csv')
+def load_data(processed=False):
 
-    train_data = train_data.drop_duplicates(subset='review', keep='first')
+    if processed:
+        train_data = pd.read_csv('data/processed/train_processed.csv')
+        test_data = pd.read_csv('data/processed/test_processed.csv')
+    else:
+        train_data = pd.read_csv('data/raw/train.csv')
+        test_data = pd.read_csv('data/raw/test.csv')
+        train_data = train_data.drop_duplicates(subset='review', keep='first')
 
     return train_data, test_data
+
 
 # Saving our preprocessed data to data/processed
 def save_processed_data(train, test):
@@ -73,8 +78,8 @@ def save_processed_data(train, test):
     test[['cleaned_review', 'sentiment']].to_csv('data/processed/test_processed.csv', index=False)
 
 # Final execution
-def execute_pipeline():
-    train, test = load_data()
+def execute_pipeline(processed=False):
+    train, test = load_data(processed=False)  # Load raw data for training
 
     X_train_tfidf, X_test_tfidf, tfidf_vectorizer = preprocess_pipeline(train, test)
 
@@ -84,3 +89,8 @@ def execute_pipeline():
     save_processed_data(train, test)
 
     return X_train_tfidf, X_test_tfidf, y_train, y_test, tfidf_vectorizer
+
+
+
+if __name__ == "__main__":
+    execute_pipeline()
